@@ -1,0 +1,37 @@
+{
+  "name": "kuzzle-application",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "scripts": {
+    "docker": "docker-compose run kuzzle",
+    "docker:dev": "docker-compose up",
+    "services": "npx kourou app:start-services",
+    "dev": "NODE_ENV=development npx ergol app.ts -c ergol.config.json",
+    "test": "npm run test:lint && npm run test:functional",
+    "test:functional": "cucumber-js --exit --fail-fast",
+    "test:lint": "eslint ./src --ext .ts --config .eslintrc.json",
+    "test:lint:fix": "eslint ./src --ext .ts --config .eslintrc.json --fix",
+    "build": "tsc --build tsconfig.json",
+    "clean": "touch app.ts && npm run build | grep TSFILE | cut -d' ' -f 2 | xargs rm"
+  },
+  "main": "app.ts",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "kuzzle": "^2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.37",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "cucumber": "^6.0.5",
+    "ergol": "^1.0.2",
+    "eslint": "^7.24.0",
+    "should": "13.2.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  },
+  "files": [
+    "dist/**/*"
+  ]
+}
